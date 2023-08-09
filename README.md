@@ -11,6 +11,8 @@
 
 IP  158.160.50.85
 
-Frontend  https://api.hanneton.nomoreparties.co
+Frontend  https://hanneton.nomoreparties.co
 
-Backend  https://hanneton.nomoreparties.co
+Backend  https://api.hanneton.nomoreparties.co
+
+
