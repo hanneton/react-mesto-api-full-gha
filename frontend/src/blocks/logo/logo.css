@@ -1,0 +1,16 @@
+.logo {
+    box-sizing: border-box;
+    display: block;
+    width: 142px;
+    height: 33px;
+    background-image: url(../../images/logo.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+}
+
+@media all and (max-width: 709px) {
+    .logo {
+        height: 24px;
+    }
+}

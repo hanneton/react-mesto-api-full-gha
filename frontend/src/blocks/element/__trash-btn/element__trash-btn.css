@@ -1,0 +1,14 @@
+.element__trash-btn {
+    position: absolute;
+    width: 18px;
+    height: 19px;
+    background-image: url(../../../images/trash-can.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    right: 20px;
+    top: 20px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}

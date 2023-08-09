@@ -1,0 +1,10 @@
+.content {
+    width: calc(100% - 38px);
+    margin: 0 auto;
+}
+
+@media all and (max-width: 709px) {
+    .content {
+        width: 100%;
+    }
+}

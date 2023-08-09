@@ -1,0 +1,26 @@
+.form__item {
+    display: block;
+    box-sizing: border-box;
+    max-width: 358px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 9px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.94px;
+}
+
+.form__item::placeholder {
+    color: #C4C4C4;
+}
+
+@media all and (max-width: 709px) {
+    .form__item {
+        max-width: 238px;
+    }
+}

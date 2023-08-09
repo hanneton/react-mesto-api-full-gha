@@ -1,0 +1,16 @@
+.user-profile {
+    display: flex;
+    align-items: center;
+    max-width: 880px;
+    width: 100%;
+    min-height: 120px;
+    margin: 0 auto;
+}
+
+@media all and (max-width: 709px) {
+    .user-profile {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+}

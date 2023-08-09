@@ -1,0 +1,10 @@
+.user-profile__info {
+    max-width: 342px;
+}
+
+
+@media all and (max-width: 709px) {
+    .user-profile__info {
+        max-width: 282px;
+    }
+}

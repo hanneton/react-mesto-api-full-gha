@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP  158.160.50.85
 
-Frontend https://...
+Frontend  https://api.hanneton.nomoreparties.co
 
-Backend https://...
+Backend  https://hanneton.nomoreparties.co

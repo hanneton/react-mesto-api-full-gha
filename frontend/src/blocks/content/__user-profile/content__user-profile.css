@@ -1,0 +1,9 @@
+.content__user-profile {
+    margin-top: 36.25px;
+}
+
+@media all and (max-width: 709px) {
+    .content__user-profile {
+        margin-top: 38.25px;
+    }
+}

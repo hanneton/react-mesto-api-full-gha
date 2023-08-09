@@ -1,0 +1,23 @@
+.user-profile__link {
+    border-radius: 50%;
+    position: relative;
+    margin-right: 30px;
+}
+
+.user-profile__link:hover .user-profile__avatar {
+    opacity: 0.2;
+}
+
+.user-profile__link:hover::after {
+    content: url(../../../images/pen.svg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media all and (max-width: 709px) {
+    .user-profile__link {
+        margin: 0 0 22.25px;
+    }
+}

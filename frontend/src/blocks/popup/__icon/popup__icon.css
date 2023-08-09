@@ -1,0 +1,8 @@
+.popup__icon {
+    margin: 60px auto 30px;
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../../../images/errorIcon.svg);
+}

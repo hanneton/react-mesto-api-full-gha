@@ -1,0 +1,18 @@
+.footer__copyright {
+    box-sizing: border-box;
+    max-width: 880px;
+    width: calc(100% - 38px);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #545454;
+    margin: 67px auto 60px;
+}
+
+@media all and (max-width: 709px) {
+    .footer__copyright {
+        font-size: 14px;
+        line-height: 17px;
+        margin: 48px auto 36px;
+    }
+}
