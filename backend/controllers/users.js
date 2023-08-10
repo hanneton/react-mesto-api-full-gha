@@ -3,7 +3,6 @@ const User = require('../models/user');
 const { NotFoundErr } = require('../middlewares/notFoundErr');
 const { ConflictErr } = require('../middlewares/conflictErr');
 
-
 const login = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(res, next, email, password);

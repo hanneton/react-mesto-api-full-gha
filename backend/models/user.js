@@ -6,7 +6,6 @@ const { regex } = require('../utils/regex-pattern');
 const { UnauthorizedErr } = require('../middlewares/unauthorizedErr');
 
 const { JWT_SECRET, NODE_ENV } = process.env;
-console.log(JWT_SECRET, NODE_ENV)
 
 const userScheme = new mongoose.Schema({
   name: {
@@ -56,9 +55,9 @@ userScheme.statics.findUserByCredentials = function (res, next, email, password)
               { expiresIn: '7d' },
             );
             res.send({ token });
-          }
-          next(new UnauthorizedErr());
-        });
+          } else throw new UnauthorizedErr();
+        })
+        .catch(next);
     })
     .catch(next);
 };

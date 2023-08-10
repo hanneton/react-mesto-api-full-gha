@@ -1,4 +1,3 @@
-// export const BASE_URL = "https://api.hanneton.nomoreparties.co";
 export const BASE_URL = "http://localhost:3000";
 
 function checkResponse(res) {

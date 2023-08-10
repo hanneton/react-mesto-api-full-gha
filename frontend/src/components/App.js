@@ -33,14 +33,11 @@ function App() {
 
   const navigate = useNavigate();
   React.useEffect(() => {
-    console.log('useeff called')
     if (isLoggedIn) {
       Promise.all([api.getInitialInfo(), api.getInitialCards()])
         .then(([info, cards]) => {
           setCurrentUser(info);
-          console.log(currentUser)
           setCards(cards);
-          console.log(cards)
         })
         .catch(err => console.log(err));
     }
@@ -178,13 +175,11 @@ function App() {
   function handleSignIn(password, email) {
     auth.authentification(password, email)
       .then((res) => {
-        console.log(res.token)
         localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
         navigate('/', { replace: true });
       })
       .catch(err => {
-        console.log(err);
         onError();
       })
   }
