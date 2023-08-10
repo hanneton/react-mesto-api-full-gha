@@ -1,19 +1,22 @@
 const mongoose = require('mongoose');
 const isEmail = require('validator/lib/isEmail');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const { regex } = require('../utils/regex-pattern');
+const { UnauthorizedErr } = require('../middlewares/unauthorizedErr');
+
+const { JWT_SECRET, NODE_ENV } = process.env;
+console.log(JWT_SECRET, NODE_ENV)
 
 const userScheme = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
     minlength: 2,
     maxlength: 30,
     default: 'Жак-Ив Кусто',
   },
   avatar: {
     type: String,
-    required: true,
     validate: {
       validator: (str) => regex.test(str),
     },
@@ -21,7 +24,6 @@ const userScheme = new mongoose.Schema({
   },
   about: {
     type: String,
-    required: true,
     minlength: 2,
     maxlength: 30,
     default: 'Исследователь',
@@ -40,21 +42,25 @@ const userScheme = new mongoose.Schema({
     select: false,
   },
 });
-userScheme.statics.findUserByCredentials = function (email, password) {
+userScheme.statics.findUserByCredentials = function (res, next, email, password) {
   return this.findOne({ email })
     .select('+password')
+    .orFail(new UnauthorizedErr())
     .then((user) => {
-      if (!user) {
-        return Promise.reject(new Error('Неправильные почта и пароль'));
-      }
-      return bcrypt.compare(password, user.password)
-        .then((matched) => {
-          if (!matched) {
-            return Promise.reject(new Error('Неправильные почта и пароль'));
+      bcrypt.compare(password, user.password)
+        .then((isValid) => {
+          if (isValid) {
+            const token = jwt.sign(
+              { _id: user._id },
+              NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
+              { expiresIn: '7d' },
+            );
+            res.send({ token });
           }
-          return user;
+          next(new UnauthorizedErr());
         });
-    });
+    })
+    .catch(next);
 };
 const User = mongoose.model('user', userScheme);
 

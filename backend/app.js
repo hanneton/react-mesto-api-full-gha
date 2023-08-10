@@ -33,8 +33,8 @@ app.use(auth);
 
 app.use('/users', usersRoutes);
 app.use('/cards', cardsRoutes);
-app.use('*', () => {
-  throw new NotFoundErr();
+app.use('*', (req, res, next) => {
+  next(new NotFoundErr());
 });
 
 app.use(errorLogger);

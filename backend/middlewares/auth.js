@@ -6,19 +6,20 @@ function authorize(req, res, next) {
   const { authorization } = req.headers;
 
   if (!authorization || !authorization.startsWith('Bearer: ')) {
-    throw new UnauthorizedErr();
+    next(new UnauthorizedErr());
+    return;
   }
   const token = authorization.replace('Bearer: ', '');
   let payload;
   try {
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key');
   } catch (err) {
-    throw new UnauthorizedErr();
+    next(new UnauthorizedErr());
+    return;
   }
 
   req.user = payload; // записываем пейлоуд в объект запроса
 
   next(); // пропускаем запрос дальше
-  return null;
 }
 module.exports = authorize;

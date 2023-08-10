@@ -1,32 +1,12 @@
-const { JWT_SECRET, NODE_ENV } = process.env;
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { NotFoundErr } = require('../middlewares/notFoundErr');
 const { ConflictErr } = require('../middlewares/conflictErr');
-const { UnauthorizedErr } = require('../middlewares/unauthorizedErr');
+
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  User.findOne({ email })
-    .select('+password')
-    .orFail(new UnauthorizedErr())
-    .then((user) => {
-      bcrypt.compare(password, user.password)
-        .then((isValid) => {
-          if (isValid) {
-            const token = jwt.sign(
-              { _id: user._id },
-              NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
-              { expiresIn: '7d' },
-            );
-            res.send({ token });
-          } else {
-            next(new UnauthorizedErr());
-          }
-        });
-    })
-    .catch(next);
+  User.findUserByCredentials(res, next, email, password);
 };
 
 const createUser = (req, res, next) => {
